@@ -17,5 +17,8 @@ class PlayersQueue:
     def get_all_players(self):
         return self.__players_list
 
+    def get_list_of_positions(self):
+        return [i.get_current_position() for i in self.__players_list]
+
     def update_turn(self):
         self.current_player_index = (self.current_player_index + 1) % len(self.__players_list)
