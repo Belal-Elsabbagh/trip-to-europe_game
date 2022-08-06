@@ -1,4 +1,5 @@
 import random
+
 from game import perks, player, play_turn_queue
 
 
@@ -21,7 +22,7 @@ class Game:
         if current_player_position == 23:
             perks.all_players_go_back_3(self.__players_queue.get_all_players())
             return
-        if current_player_position in perks.position_perks.keys():
+        if current_player_position in perks.position_perks:
             current_player.set_position(perks.position_perks[current_player_position])
             return
         if current_player_position in perks.play_again_perks:
@@ -42,9 +43,12 @@ class Game:
         current_player.set_position(next_position)
         self.run_perks()
 
-    def run_game(self):
-        while max([i.get_current_position() for i in self.__players_queue.get_all_players()]) < 50:
+    def run_game(self) -> None:
+        while max(self.__players_queue.get_list_of_positions()) < 51:
             self.__run_turn(self.__players_queue.get_current_player())
             self.__players_queue.update_turn()
             print(self.__players_queue)
             print("----------------------")
+
+    def start_game(self):
+        self.run_game()
