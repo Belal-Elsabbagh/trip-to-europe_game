@@ -1,7 +1,6 @@
 class Player:
     __current_player_position: int = 0
     __player_id: str = None
-    __skip: bool = False
 
     def __init__(self, player_id: str):
         self.__player_id = player_id
@@ -14,9 +13,6 @@ class Player:
 
     def get_name(self):
         return self.__player_id
-
-    def set_skip(self, value=True):
-        self.__skip = value
 
     def set_position(self, value: int):
         self.__current_player_position = value
