@@ -1,3 +1,5 @@
+"""main game runner"""
+
 import game
 from game.player import Player
 
