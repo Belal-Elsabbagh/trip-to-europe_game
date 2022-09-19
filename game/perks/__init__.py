@@ -1,5 +1,17 @@
-from game.player import Player
-position_perks = {
+"""
+This module contains constant values of perks.
+
+position perks:
+    contains a dictionary of positions that transfer a player to another position.
+
+disable_players_perks:
+    contains an array of positions that disable the player's next turn.
+
+play_again_perks:
+    contains an array of positions where a player would play again in their turn.
+"""
+
+position_perks: dict[int, int] = {
     3: 0,
     10: 6,
     14: 18,
@@ -16,4 +28,3 @@ position_perks = {
 }
 disable_players_perks = [12, 16, 27, 41]
 play_again_perks = [8, 19, 41]
-

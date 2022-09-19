@@ -35,13 +35,31 @@ class Player:
         Args:
             value (int): The player's position.
 
+        Raises:
+            ValueError: if the player's new position value is invalid
+
         Returns:
             None: no return
         """
+        if value < 0 or value > 51:
+            raise ValueError("Only values between 0 and 51 are allowed")
         self.__position = value
 
-    def get_current_position(self) -> int:
+    def get_position(self) -> int:
+        """
+
+        Returns:
+            int: The player's current position.
+        """
         return self.__position
 
     def move_player(self, value):
-        self.__position += value
+        """
+
+        Args:
+            value (int): The value to increment/decrement the player's position.
+
+        Returns:
+            None: no return
+        """
+        self.set_position(self.get_position() + value)

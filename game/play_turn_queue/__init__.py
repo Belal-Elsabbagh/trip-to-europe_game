@@ -15,6 +15,9 @@ class PlayersQueue:
     def __str__(self):
         return f"Queue: {self.__queue}"
 
+    def __repr__(self):
+        return f"Queue: {self.__queue}"
+
     def __get_player_turn_index(self):
         return self.__turn_count % len(self.__queue)
 
@@ -36,7 +39,7 @@ class PlayersQueue:
         return self.__queue
 
     def get_list_of_positions(self):
-        return [i.get_current_position() for i in self.__queue]
+        return [i.get_position() for i in self.__queue]
 
     def update_turn(self):
         while True:
