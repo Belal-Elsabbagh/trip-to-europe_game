@@ -22,7 +22,7 @@ position_perks: dict[int, int] = {
     48: 28,
 }
 
-endgame_positions: dict[int,int] = {
+endgame_positions: dict[int, int] = {
     52: 50,
     53: 49,
     54: 48,

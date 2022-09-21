@@ -28,7 +28,7 @@ class Game:
 
     def __log_turn(self, roll):
         f = open("log.txt", "a")
-        f.write(f"{roll} {self.__players_queue.__str__()}\n")
+        f.write(f"{roll} - {self.__players_queue.__str__()}\n")
         f.close()
 
     @staticmethod

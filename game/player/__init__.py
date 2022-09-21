@@ -53,7 +53,7 @@ class Player:
         """
         return self.__position
 
-    def move_player(self, value):
+    def move_player(self, value: int) -> None:
         """
 
         Args:
