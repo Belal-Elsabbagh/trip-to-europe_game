@@ -12,8 +12,10 @@ from game.player import Player
 class Game:
     """
     The game runner.
+
     Attributes:
-        players_list (PlayersQueue): The player queue to run.
+        __players_queue (PlayersQueue): The player queue to run.
+        game_log (list): The game sequence.
     """
 
     def __init__(self, players_list: PlayersQueue) -> None:
@@ -24,9 +26,9 @@ class Game:
         self.game_log = []
         self.__players_queue = PlayersQueue(players_list)
 
-    def __log_turn(self):
+    def __log_turn(self, roll):
         f = open("log.txt", "a")
-        f.write(self.__players_queue.__str__() + "\n")
+        f.write(f"{roll} {self.__players_queue.__str__()}\n")
         f.close()
 
     @staticmethod
@@ -57,6 +59,8 @@ class Game:
             self.__move_player_to(perked_player, perks.position_perks[current_player_position])
 
     def __move_player_to(self, current_player: Player, pos):
+        if pos in perks.endgame_positions:
+            pos = perks.endgame_positions[pos]
         for i in self.__players_queue.get_all_players():
             occupant_position = i.get_position()
             if occupant_position is pos and occupant_position > 0:
@@ -110,13 +114,13 @@ class Game:
         """
 
         current_dice_roll = Game.__roll_dice()
-        print(f"{current_player.get_id()} rolls {current_dice_roll}")
         if current_player.get_position() == 21 and current_dice_roll not in [1, 6]:
             return
         next_position = current_player.get_position() + current_dice_roll
         self.__move_player_to(current_player, next_position)
         self.__run_position_perk_for_all_players()
         self.__run_turn_perks()
+        self.__log_turn(f"{current_player.get_id()} rolls {current_dice_roll}")
 
     def __run_game(self) -> None:
         """
@@ -127,7 +131,6 @@ class Game:
         """
         while max(self.__players_queue.get_list_of_positions()) != 51:
             self.__run_turn(self.__players_queue.get_current_player())
-            self.__log_turn()
             self.__players_queue.update_turn()
 
     def start_game(self) -> None:

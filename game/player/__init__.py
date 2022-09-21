@@ -42,7 +42,7 @@ class Player:
             None: no return
         """
         if value < 0 or value > 51:
-            raise ValueError("Only values between 0 and 51 are allowed")
+            raise ValueError(f"Only values between 0 and 51 are allowed. Value sent: {value}")
         self.__position = value
 
     def get_position(self) -> int:
